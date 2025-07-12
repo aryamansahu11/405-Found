@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Swap Platform - Swap Request</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f1e8;
+            color: #3a2e1f;
+        }
+        
+        .header {
+            background-color: #5d4c3a;
+            color: #f0e6d2;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .platform-name {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .nav-item {
+            color: #f0e6d2;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .nav-item.active {
+            font-weight: bold;
+            text-decoration: underline;
+            color: #d9c7a7;
+        }
+        
+        .account-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #d9c7a7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #5d4c3a;
+            font-weight: bold;
+        }
+        
+        .container {
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .profile-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #b8a58a;
+            margin-right: 15px;
+            overflow: hidden;
+        }
+        
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .profile-info h2 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #3a2e1f;
+        }
+        
+        .profile-info p {
+            color: #5d4c3a;
+        }
+        
+        .section {
+            background-color: #f0e6d2;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #d2c4a6;
+        }
+        
+        .section-title {
+            font-size: 16px;
+            color: #5d4c3a;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #d2c4a6;
+        }
+        
+        .skills-list {
+            list-style-type: none;
+        }
+        
+        .skill-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #e0d4bc;
+            color: #3a2e1f;
+        }
+        
+        .skill-item:last-child {
+            border-bottom: none;
+        }
+        
+        .rating-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .stars {
+            margin: 10px 0;
+            color: #b8860b;
+            font-size: 24px;
+        }
+        
+        .feedback {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #b8a58a;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 80px;
+            margin-bottom: 10px;
+            background-color: #f8f4e9;
+        }
+        
+        .button {
+            background-color: #5d4c3a;
+            color: #f0e6d2;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        
+        .button:hover {
+            background-color: #6d5c4a;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="platform-name">Skill Swap Platform</div>
+        <div class="nav">
+            <a href="#" class="nav-item active">Swap request</a>
+            <a href="#" class="nav-item">Home</a>
+            <div class="account-icon">A</div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="profile-header">
+            <div class="profile-photo">
+                <!-- Profile photo would go here -->
+            </div>
+            <div class="profile-info">
+                <h2>Marc Demo</h2>
+                <p>Request</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">Skills Offered</h3>
+            <ul class="skills-list">
+                <li class="skill-item">Graphic Design</li>
+                <li class="skill-item">Photo Editing</li>
+                <li class="skill-item">Logo Creation</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">Skills Wanted</h3>
+            <ul class="skills-list">
+                <li class="skill-item">Web Development</li>
+                <li class="skill-item">HTML/CSS</li>
+            </ul>
+        </div>
+        
+        <div class="section rating-section">
+            <h3 class="section-title">Rating and Feedback</h3>
+            <div class="stars">
+                ★★★★★
+            </div>
+            <textarea class="feedback" placeholder="Write your feedback here..."></textarea>
+            <button class="button">Submit Request</button>
+        </div>
+    </div>
+</body>
+</html>
