@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Magical Swap Requests</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(145deg, #fdf6f0, #f7efe5);
+      font-family: 'Playfair Display', serif;
+      padding: 30px;
+      color: #4e342e;
+      overflow-x: hidden;
+    }
+    .navbar-custom {
+      background: #f4e8dc;
+      border-radius: 20px;
+      padding: 16px 24px;
+      margin-bottom: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 5px 20px rgba(93, 64, 55, 0.08);
+    }
+    .profile-glow {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #d7ccc8;
+      box-shadow: 0 0 12px rgba(141, 110, 99, 0.4);
+      transition: box-shadow 0.4s;
+    }
+    .profile-glow:hover {
+      box-shadow: 0 0 20px rgba(141, 110, 99, 0.6);
+    }
+    .request-card {
+      background: #fff;
+      border: 2px dashed #d7ccc8;
+      border-radius: 22px;
+      padding: 24px;
+      margin-bottom: 24px;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(141, 110, 99, 0.1);
+      transition: transform 0.3s;
+    }
+    .request-card:hover {
+      transform: translateY(-6px);
+    }
+    .nickname-badge {
+      background: #ffe0b2;
+      color: #5d4037;
+      font-size: 0.85rem;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-weight: 600;
+      margin-top: 5px;
+      display: inline-block;
+    }
+    .rating {
+      font-size: 0.8rem;
+      color: #8d6e63;
+    }
+    .btn-glow {
+      border-radius: 25px;
+      font-weight: bold;
+      padding: 6px 18px;
+      border: none;
+      transition: all 0.3s;
+    }
+    .btn-accept {
+      background: #6d4c41;
+      color: white;
+    }
+    .btn-accept:hover {
+      background: #5d4037;
+      box-shadow: 0 0 10px rgba(109, 76, 65, 0.5);
+    }
+    .btn-reject {
+      background: #d32f2f;
+      color: white;
+      margin-left: 10px;
+    }
+    .btn-reject:hover {
+      background: #b71c1c;
+      box-shadow: 0 0 10px rgba(179, 38, 30, 0.4);
+    }
+    .divider {
+      width: 60%;
+      height: 4px;
+      background: url('https://svgshare.com/i/13AS.svg') repeat-x;
+      background-size: contain;
+      margin: 40px auto;
+    }
+    .page-link {
+      border-radius: 50% !important;
+      color: #5d4037 !important;
+    }
+    .status-pending { color: #ff9800; }
+    .status-rejected { color: #c62828; }
+    .status-accepted { color: #2e7d32; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar-custom">
+    <div class="fw-bold fs-4">✨ Skill Swap Portal</div>
+    <div>
+      <a href="#" class="me-3 text-decoration-none text-dark">Home</a>
+      <img src="https://i.pravatar.cc/48?img=52" class="profile-glow" alt="User Photo">
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <select class="form-select me-2" style="max-width: 200px;">
+      <option selected>Pending</option>
+      <option>Accepted</option>
+      <option>Rejected</option>
+    </select>
+    <input type="text" class="form-control" placeholder="Search..." style="max-width: 260px;">
+  </div>
+
+  <!-- Cards -->
+  <div id="cards-wrapper">
+    <!-- JS will place cards here -->
+  </div>
+
+  <!-- Divider -->
+  <div class="divider"></div>
+
+  <!-- Pagination -->
+  <nav class="mt-4">
+    <ul class="pagination justify-content-center">
+      <li class="page-item"><a class="page-link" href="#" onclick="showPage(1)">1</a></li>
+      <li class="page-item"><a class="page-link" href="#" onclick="showPage(2)">2</a></li>
+      <li class="page-item"><a class="page-link" href="#" onclick="showPage(3)">3</a></li>
+    </ul>
+  </nav>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Page logic JS -->
+  <script>
+    const data = [
+      { img: 25, name: "Marc Demo", rating: "3.9", status: "Pending", offer: "JavaScript", want: "Python" },
+      { img: 34, name: "Ayesha Noor", rating: "4.4", status: "Rejected", offer: "Sketching", want: "Public Speaking" },
+      { img: 15, name: "Sonakshi Sinha", rating: "2.5", status: "Rejected", offer: "Dancing", want: "Public Speaking" },
+      { img: 38, name: "Vedika Dhakad", rating: "4.6", status: "Pending", offer: "C++", want: "Public Speaking" },
+      { img: 21, name: "Simran Kaur", rating: "4.1", status: "Accepted", offer: "Singing", want: "Marketing" },
+      { img: 30, name: "Fatima Rizvi", rating: "3.8", status: "Pending", offer: "Python", want: "UI Design" },
+      { img: 14, name: "Shraddha B", rating: "4.0", status: "Rejected", offer: "English Grammar", want: "C" },
+      { img: 29, name: "Riya Sen", rating: "4.5", status: "Pending", offer: "Content Writing", want: "Social Media" },
+      { img: 20, name: "Sneha Roy", rating: "4.2", status: "Accepted", offer: "Figma", want: "Node.js" },
+      { img: 17, name: "Nikita Thakur", rating: "3.9", status: "Pending", offer: "IoT", want: "Java" },
+      { img: 23, name: "Palak Mehta", rating: "3.6", status: "Rejected", offer: "Excel", want: "Speaking" },
+      { img: 18, name: "Jiya Sharma", rating: "4.3", status: "Pending", offer: "Communication", want: "Sketching" }
+    ];
+
+    const wrapper = document.getElementById('cards-wrapper');
+
+    function statusClass(status) {
+      return status === "Pending" ? "status-pending" :
+             status === "Accepted" ? "status-accepted" : "status-rejected";
+    }
+
+    function getButtons(status) {
+      if (status === "Pending") {
+        return `
+          <button class="btn btn-glow btn-accept">Accept</button>
+          <button class="btn btn-glow btn-reject">Reject</button>
+        `;
+      }
+      return '';
+    }
+
+    function renderPage(page) {
+      wrapper.innerHTML = '';
+      const start = (page - 1) * 4;
+      const end = start + 4;
+      const cards = data.slice(start, end).map(d => `
+        <div class="request-card">
+          <div class="d-flex align-items-center">
+            <img src="https://i.pravatar.cc/150?img=${d.img}" class="profile-glow me-3">
+            <div>
+              <div class="fw-semibold fs-5">${d.name}</div>
+              <div class="rating">Rating: ${d.rating}/5</div>
+            </div>
+            <div class="ms-auto text-end">
+              <div class="${statusClass(d.status)} fw-bold">Status: ${d.status}</div>
+              ${getButtons(d.status)}
+            </div>
+          </div>
+          <div class="mt-3 ps-5">
+            <div><strong>Skill Offered:</strong> ${d.offer}</div>
+            <div><strong>Skill Wanted:</strong> ${d.want}</div>
+          </div>
+        </div>
+      `).join('');
+      wrapper.innerHTML = cards;
+    }
+
+    function showPage(n) {
+      renderPage(n);
+      document.querySelectorAll('.pagination .page-item').forEach((el, i) => {
+        el.classList.toggle('active', i === n);
+      });
+    }
+
+    // Default to page 1
+    renderPage(1);
+  </script>
+</body>
+</html>
+
+
+      
