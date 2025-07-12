@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Styled Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <style>
+        h3 {
+            text-align: center;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            background-color: #f5f5dc;
+            color: #6d4c41;
+            margin: 0;
+            padding: 20px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 30px;
+            border: 2px solid #4b2e2e;
+            background-color: #fffaf0;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(75, 46, 46, 0.2);
+        }
+
+        header nav {
+            background-color: #6d4c41;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            padding: 0;
+        }
+
+        .left,
+        .right {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .left a {
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .left li:first-child a {
+            background-color: rgb(93, 196, 93);
+        }
+
+        .left li:nth-child(2) a {
+            background-color: rgb(218, 81, 81);
+        }
+
+        .right a {
+            color: white;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        main div {
+            margin: 20px 0;
+        }
+
+        label,
+        p {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #8b5e3c;
+            border-radius: 5px;
+            background-color: #fffaf0;
+            color: #4b2e2e;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        select:required:invalid {
+            color: gray;
+        }
+
+        ::placeholder {
+            color: #a67b5b;
+        }
+
+        .profile-pic {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 2px solid #4b2e2e;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h3>USER LOGIN</h3>
+    <form id="loginForm">
+
+        <header>
+            <nav>
+                <ul>
+                    <div class="left">
+                        <li><a href="#">Save</a></li>
+                        <li><a href="#">Discard</a></li>
+                    </div>
+                    <div class="right">
+                        <li><a href="#">Swap Request</a></li>
+                        <li><a href="#">Home</a></li>
+                        <li><img src="https://avatar.iran.liara.run/public/11" alt="PROFILE-pic" class="profile-pic"></li>
+                    </div>
+                </ul>
+            </nav>
+        </header>
+
+        <br><br>
+
+        <main>
+            <div>
+                <label for="NAME">NAME</label>
+                <input type="text" id="NAME" placeholder="Enter Name">
+            </div>
+
+            <div>
+                <label for="LOCATION">LOCATION</label>
+                <input type="text" id="LOCATION" placeholder="Enter Location">
+            </div>
+
+            <div>
+                <label for="skills-offered">Skills Offered</label>
+                <select id="skills-offered" required>
+                    <option value="" disabled selected>Select Skill</option>
+                    <option value="Video editing">Video Editing</option>
+                    <option value="Graphic editing">Graphic Editing</option>
+                    <option value="Photoshop">Photoshop</option>
+                    <option value="Code Editor">Code Editor</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="skills-wanted">Skills Wanted</label>
+                <select id="skills-wanted" required>
+                    <option value="" disabled selected>Select Skill Wanted</option>
+                    <option value="Python">Python</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="C++">C++</option>
+                    <option value="Code editor">Code Editor</option>
+                    <option value="Editor">Editor</option>
+                </select>
+            </div>
+
+            <div>
+                <p>AVAILABILITY</p>
+                <input id="weekdays" type="radio" name="AVAILABILITY" value="Weekdays">
+                <label for="weekdays">Weekdays</label>
+                <br>
+                <input id="weekends" type="radio" name="AVAILABILITY" value="Weekends">
+                <label for="weekends">Weekends</label>
+            </div>
+
+            <div>
+                <p>PROFILE</p>
+                <input id="PRIVATE" type="radio" name="PROFILE" value="Private">
+                <label for="PRIVATE">Private</label>
+                <br>
+                <input id="PUBLIC" type="radio" name="PROFILE" value="Public">
+                <label for="PUBLIC">Public</label>
+            </div>
+
+            <button type="submit">Submit</button>
+        </main>
+    </form>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const name = document.getElementById('NAME').value.trim();
+            const location = document.getElementById('LOCATION').value.trim();
+            const skillOffered = document.getElementById('skills-offered').value;
+            const skillWanted = document.getElementById('skills-wanted').value;
+            const availability = document.querySelector('input[name="AVAILABILITY"]:checked')?.value;
+            const profile = document.querySelector('input[name="PROFILE"]:checked')?.value;
+
+            if (!name || !location || !skillOffered || !skillWanted || !availability || !profile) {
+                alert("Please fill all fields.");
+                return;
+            }
+
+            const userData = {
+                name,
+                location,
+                skillOffered,
+                skillWanted,
+                availability,
+                profile
+            };
+
+            console.log("User Submitted:", userData);
+            alert("Request submitted!\n" + JSON.stringify(userData, null, 2));
+
+            this.reset();
+        });
+    </script>
+
+</body>
+
+</html>
